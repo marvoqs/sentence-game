@@ -9,7 +9,7 @@ type AppProps = {
   edit: boolean;
 };
 
-const mapStateToProps = (state: SentenceState) => ({
+const mapStateToProps = (state: SentenceState): AppProps => ({
   edit: state.edit,
 });
 
