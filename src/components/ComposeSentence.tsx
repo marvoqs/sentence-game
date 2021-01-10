@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { updateSentence } from '../store/actions';
 
-type ComposeSentenceProps = {
+interface Props {}
+
+interface LinkStateProps {
   sentence: Sentence;
-};
+}
 
-const mapStateToProps = (state: SentenceState): ComposeSentenceProps => ({
+interface LinkDispatchProps {
+  updateSentence: (sentence: Sentence) => void;
+}
+
+type LinkProps = Props & LinkStateProps & LinkDispatchProps;
+
+const mapStateToProps = (state: SentenceState): LinkStateProps => ({
   sentence: state.sentence,
 });
 
-const ComposeSentence: React.FC<ComposeSentenceProps> = ({ sentence }) => {
+const ComposeSentence: React.FC<LinkProps> = ({ sentence, updateSentence }) => {
   const [formData, setFormData] = useState({
-    who: '',
-    what: '',
-    when: '',
-    where: '',
+    who: sentence.who,
+    what: sentence.what,
+    when: sentence.when,
+    where: sentence.where,
   });
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    setFormData((formData) => ({ ...formData, [e.currentTarget.name]: e.currentTarget.value }));
+    setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
   };
 
   const handleSubmit = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
+    updateSentence(formData);
   };
 
   return (
@@ -48,4 +58,4 @@ const ComposeSentence: React.FC<ComposeSentenceProps> = ({ sentence }) => {
   );
 };
 
-export default connect(mapStateToProps, {})(ComposeSentence);
+export default connect(mapStateToProps, { updateSentence })(ComposeSentence);
