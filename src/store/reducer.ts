@@ -1,22 +1,5 @@
 import { UPDATE_SENTENCE, EDIT_SENTENCE, REMOVE_SENTENCE } from './actionTypes';
 
-interface Sentence {
-  who: string;
-  what: string;
-  when: string;
-  where: string;
-}
-
-interface SentenceState {
-  edit: boolean;
-  sentence: Sentence;
-}
-
-interface SentenceAction {
-  type: string;
-  sentence: Sentence;
-}
-
 const defaultSentence: Sentence = {
   who: '',
   what: '',
@@ -29,7 +12,7 @@ const defaultState: SentenceState = {
   sentence: defaultSentence,
 };
 
-export const reducer = (state: SentenceState = defaultState, action: SentenceAction): SentenceState => {
+const reducer = (state: SentenceState = defaultState, action: SentenceAction): SentenceState => {
   switch (action.type) {
     case UPDATE_SENTENCE:
       return {
@@ -50,3 +33,5 @@ export const reducer = (state: SentenceState = defaultState, action: SentenceAct
       return state;
   }
 };
+
+export default reducer;
