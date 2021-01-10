@@ -1,4 +1,4 @@
-import { UPDATE_SENTENCE, EDIT_SENTENCE, REMOVE_SENTENCE } from './types';
+import { UPDATE_SENTENCE, EDIT_SENTENCE, CLEAR_SENTENCE } from './types';
 
 const defaultSentence: Sentence = {
   who: '',
@@ -24,7 +24,7 @@ const reducer = (state: SentenceState = defaultState, action: SentenceAction): S
         ...state,
         edit: true,
       };
-    case REMOVE_SENTENCE:
+    case CLEAR_SENTENCE:
       return {
         edit: true,
         sentence: defaultSentence,

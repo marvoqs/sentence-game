@@ -1,4 +1,4 @@
-import { UPDATE_SENTENCE, EDIT_SENTENCE, REMOVE_SENTENCE } from './types';
+import { UPDATE_SENTENCE, EDIT_SENTENCE, CLEAR_SENTENCE } from './types';
 
 export const updateSentence = (sentence: Sentence): SentenceAction => ({
   type: UPDATE_SENTENCE,
@@ -9,6 +9,6 @@ export const editSentence = (): SentenceAction => ({
   type: EDIT_SENTENCE,
 });
 
-export const removeSentence = (): SentenceAction => ({
-  type: REMOVE_SENTENCE,
+export const clearSentence = (): SentenceAction => ({
+  type: CLEAR_SENTENCE,
 });
