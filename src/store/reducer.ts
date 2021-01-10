@@ -1,4 +1,4 @@
-import { UPDATE_SENTENCE, EDIT_SENTENCE, REMOVE_SENTENCE } from './actionTypes';
+import { UPDATE_SENTENCE, EDIT_SENTENCE, REMOVE_SENTENCE } from './types';
 
 const defaultSentence: Sentence = {
   who: '',
