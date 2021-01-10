@@ -22,7 +22,7 @@ const mapStateToProps = (state: SentenceState): LinkStateProps => ({
 const ShowSentence: React.FC<LinkProps> = ({ sentence: { who, what, when, where }, editSentence, clearSentence }) => {
   return (
     <div>
-      {`${who} ${what} ${where} ${when}`}
+      <div className='sentence'>{`${who.charAt(0).toUpperCase()}${who.slice(1)} ${what} ${where} ${when}.`}</div>
       <button onClick={editSentence}>Edit sentence</button>
       <button onClick={clearSentence}>Create new sentence</button>
     </div>

@@ -14,7 +14,12 @@ const mapStateToProps = (state: SentenceState): AppProps => ({
 });
 
 const App: React.FC<AppProps> = ({ edit }) => {
-  return edit ? <ComposeSentence /> : <ShowSentence />;
+  return (
+    <div className='container'>
+      <h1>Sentence Composer</h1>
+      {edit ? <ComposeSentence /> : <ShowSentence />}
+    </div>
+  );
 };
 
 export default connect(mapStateToProps, {})(App);
