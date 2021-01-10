@@ -12,7 +12,7 @@ interface SentenceState {
 
 interface SentenceAction {
   type: string;
-  sentence: Sentence;
+  sentence?: Sentence;
 }
 
 type DispatchType = (args: SentenceAction) => SentenceAction;

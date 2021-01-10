@@ -1,16 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { editSentence, removeSentence } from '../store/actions';
 
-type ShowSentenceProps = {
+interface Props {}
+
+interface LinkStateProps {
   sentence: Sentence;
-};
+}
 
-const mapStateToProps = (state: SentenceState) => ({
+interface LinkDispatchProps {
+  editSentence: () => void;
+  removeSentence: () => void;
+}
+
+type LinkProps = Props & LinkStateProps & LinkDispatchProps;
+
+const mapStateToProps = (state: SentenceState): LinkStateProps => ({
   sentence: state.sentence,
 });
 
-const ShowSentence: React.FC<ShowSentenceProps> = ({ sentence }) => {
-  return <div>Show Sentence</div>;
+const ShowSentence: React.FC<LinkProps> = ({ sentence: { who, what, when, where }, editSentence, removeSentence }) => {
+  return (
+    <div>
+      {`${who} ${what} ${where} ${when}`}
+      <button onClick={editSentence}>Edit sentence</button>
+      <button onClick={removeSentence}>Create new sentence</button>
+    </div>
+  );
 };
 
-export default connect(mapStateToProps, {})(ShowSentence);
+export default connect(mapStateToProps, { editSentence, removeSentence })(ShowSentence);
