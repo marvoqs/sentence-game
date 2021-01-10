@@ -19,6 +19,7 @@ const mapStateToProps = (state: SentenceState): LinkStateProps => ({
   sentence: state.sentence,
 });
 
+// Show Sentence Component
 const ShowSentence: React.FC<LinkProps> = ({ sentence: { who, what, when, where }, editSentence, clearSentence }) => {
   return (
     <div>

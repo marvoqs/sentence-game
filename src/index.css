@@ -86,3 +86,17 @@ button:hover {
   margin: 5rem;
   color: #005e8d;
 }
+
+@media (max-width: 400px) {
+  .container {
+    padding: 0;
+  }
+
+  .form-box {
+    border-radius: 0;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}

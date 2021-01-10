@@ -1,8 +1,8 @@
 interface Sentence {
   who: string;
   what: string;
-  when: string;
-  where: string;
+  when?: string;
+  where?: string;
 }
 
 interface SentenceState {

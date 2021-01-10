@@ -18,6 +18,7 @@ const mapStateToProps = (state: SentenceState): LinkStateProps => ({
   sentence: state.sentence,
 });
 
+// Compose Sentence Component
 const ComposeSentence: React.FC<LinkProps> = ({ sentence, updateSentence }) => {
   const [formData, setFormData] = useState({
     who: sentence.who,
@@ -32,7 +33,13 @@ const ComposeSentence: React.FC<LinkProps> = ({ sentence, updateSentence }) => {
 
   const handleSubmit = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
-    updateSentence(formData);
+
+    // Check if the "who" and "what" are filled as required fields
+    if (formData.who && formData.what) {
+      updateSentence(formData);
+    } else {
+      alert('You have to fill at least who is doing what. The other fields are optional.');
+    }
   };
 
   return (

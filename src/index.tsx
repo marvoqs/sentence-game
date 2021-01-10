@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, Store } from 'redux';
 import { Provider } from 'react-redux';
 
+// CSS Styles
 import './index.css';
 
 import App from './App';
@@ -10,6 +11,7 @@ import reducer from './store/reducer';
 
 import reportWebVitals from './reportWebVitals';
 
+// Create Redux Store
 const store: Store<SentenceState, SentenceAction> & {
   dispatch: DispatchType;
 } = createStore(reducer);
