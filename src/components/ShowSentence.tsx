@@ -1,33 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { editSentence, clearSentence } from '../store/actions';
 
-interface Props {}
-
-interface LinkStateProps {
-  sentence: Sentence;
-}
-
-interface LinkDispatchProps {
-  editSentence: () => void;
-  clearSentence: () => void;
-}
-
-type LinkProps = Props & LinkStateProps & LinkDispatchProps;
-
-const mapStateToProps = (state: SentenceState): LinkStateProps => ({
-  sentence: state.sentence,
-});
-
 // Show Sentence Component
-const ShowSentence: React.FC<LinkProps> = ({ sentence: { who, what, when, where }, editSentence, clearSentence }) => {
+const ShowSentence: React.FC = () => {
+  const dispatch = useDispatch();
+  const { who, what, when, where } = useSelector((state: SentenceState) => state.sentence);
   return (
     <div>
       <div className='sentence'>{`${who.charAt(0).toUpperCase()}${who.slice(1)} ${what} ${where} ${when}.`}</div>
-      <button onClick={editSentence}>Edit sentence</button>
-      <button onClick={clearSentence}>Create new sentence</button>
+      <button onClick={() => dispatch(editSentence())}>Edit sentence</button>
+      <button onClick={() => dispatch(clearSentence())}>Create new sentence</button>
     </div>
   );
 };
 
-export default connect(mapStateToProps, { editSentence, clearSentence })(ShowSentence);
+export default ShowSentence;

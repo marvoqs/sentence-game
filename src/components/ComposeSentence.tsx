@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateSentence } from '../store/actions';
 
-interface Props {}
-
-interface LinkStateProps {
-  sentence: Sentence;
-}
-
-interface LinkDispatchProps {
-  updateSentence: (sentence: Sentence) => void;
-}
-
-type LinkProps = Props & LinkStateProps & LinkDispatchProps;
-
-const mapStateToProps = (state: SentenceState): LinkStateProps => ({
-  sentence: state.sentence,
-});
-
 // Compose Sentence Component
-const ComposeSentence: React.FC<LinkProps> = ({ sentence, updateSentence }) => {
+const ComposeSentence: React.FC = () => {
+  const dispatch = useDispatch();
+  const sentence = useSelector((state: SentenceState) => state.sentence);
   const [formData, setFormData] = useState({
     who: sentence.who,
     what: sentence.what,
@@ -36,7 +22,7 @@ const ComposeSentence: React.FC<LinkProps> = ({ sentence, updateSentence }) => {
 
     // Check if the "who" and "what" are filled as required fields
     if (formData.who && formData.what) {
-      updateSentence(formData);
+      dispatch(updateSentence(formData));
     } else {
       alert('You have to fill at least who is doing what. The other fields are optional.');
     }
@@ -59,4 +45,4 @@ const ComposeSentence: React.FC<LinkProps> = ({ sentence, updateSentence }) => {
   );
 };
 
-export default connect(mapStateToProps, { updateSentence })(ComposeSentence);
+export default ComposeSentence;

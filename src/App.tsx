@@ -1,19 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //Components
 import ComposeSentence from './components/ComposeSentence';
 import ShowSentence from './components/ShowSentence';
 
-type AppProps = {
-  edit: boolean;
-};
+const App: React.FC = () => {
+  const edit = useSelector((state: SentenceState) => state.edit);
 
-const mapStateToProps = (state: SentenceState): AppProps => ({
-  edit: state.edit,
-});
-
-const App: React.FC<AppProps> = ({ edit }) => {
   return (
     <div className='container'>
       <h1>Sentence Composer</h1>
@@ -22,4 +16,4 @@ const App: React.FC<AppProps> = ({ edit }) => {
   );
 };
 
-export default connect(mapStateToProps, {})(App);
+export default App;
