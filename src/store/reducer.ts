@@ -17,7 +17,7 @@ const reducer = (state: SentenceState = defaultState, action: SentenceAction): S
     case UPDATE_SENTENCE:
       return {
         edit: false,
-        sentence: action.sentence || defaultSentence,
+        sentence: action?.sentence || defaultSentence,
       };
     case EDIT_SENTENCE:
       return {
